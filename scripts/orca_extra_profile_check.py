@@ -349,16 +349,20 @@ def main():
         description="Check 3D printer profiles for common issues",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter
     )
+    parser.add_argument("--dir", type=str, required=True, help="Root directory containing vendor profiles")
     parser.add_argument("--vendor", type=str, help="Specify a single vendor to check")
     parser.add_argument("--check-filaments", action="store_true", help="Check 'compatible_printers' in filament profiles")
     parser.add_argument("--check-materials", action="store_true", help="Check default materials in machine profiles")
     parser.add_argument("--check-obsolete-keys", action="store_true", help="Warn if obsolete keys are found in filament profiles")
     args = parser.parse_args()
 
-    print_info("Checking profiles ...")
+    profiles_dir = Path(args.dir).resolve()
+    if not profiles_dir.exists():
+        print_error(f"Provided directory '{profiles_dir}' does not exist.")
+        exit(1)
 
-    script_dir = Path(__file__).resolve().parent
-    profiles_dir = script_dir.parent / "resources" / "profiles"
+    print_info(f"Checking profiles in: {profiles_dir}")
+
     checked_vendor_count = 0
     errors_found = 0
     warnings_found = 0

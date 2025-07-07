@@ -22,10 +22,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Run extra JSON check
-        run: |
-          python3 ./scripts/orca_extra_profile_check.py
-
       - name: Download validator
         run: |
           curl -LJO https://github.com/SoftFever/Orca_tools/releases/download/1/OrcaSlicer_profile_validator
@@ -41,6 +37,6 @@ jobs:
           for dir in ./profiles/*/
           do
             echo "Validating profiles in $dir"
-            python3 ./scripts/orca_extra_profile_check.py "$dir"
+            python3 ./scripts/orca_extra_profile_check.py --dir "$dir"
             ./OrcaSlicer_profile_validator -p "$dir" -l 2
           done
