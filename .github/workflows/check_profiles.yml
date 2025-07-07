@@ -27,11 +27,6 @@ jobs:
           curl -LJO https://github.com/SoftFever/Orca_tools/releases/download/1/OrcaSlicer_profile_validator
           chmod +x ./OrcaSlicer_profile_validator
 
-      - name: Download custom presets
-        run: |
-          curl -LJO https://github.com/SoftFever/OrcaSlicer/releases/download/nightly-builds/orca_custom_preset_tests.zip
-          unzip ./orca_custom_preset_tests.zip -d ./profiles
-
       - name: Run validation for each profile version
         run: |
           for dir in ./profiles/*/
