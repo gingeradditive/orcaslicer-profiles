@@ -44,15 +44,6 @@ for VENDOR in "$@"; do
     if [ -d "$RESOURCES_DIR/$VENDOR" ]; then
         cp -r "$RESOURCES_DIR/$VENDOR" "$TEMP_DIR/profiles/"
         echo "Added $VENDOR directory"
-        
-        # Remove excluded file types
-        find "$TEMP_DIR/profiles/$VENDOR" -type f \( \
-            -name "*.jpg" -o \
-            -name "*.stl" -o \
-            -name "*.svg" -o \
-            -name "*.png" -o \
-            -name "*.py" \
-        \) -delete
     else
         echo "Warning: $VENDOR directory not found"
     fi

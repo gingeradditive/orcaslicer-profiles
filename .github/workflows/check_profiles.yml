@@ -8,6 +8,13 @@ on:
       - 'profiles/**'
       - '.github/workflows/check_profiles.yml'
 
+  push:
+    branches:
+      - main
+    paths:
+      - 'profiles/**'
+      - 'scripts/pack_profiles.sh'
+
   workflow_dispatch:
     inputs:
       logLevel:
@@ -34,4 +41,37 @@ jobs:
             echo "Validating profiles in $dir"
             python3 ./scripts/orca_extra_profile_check.py --dir "$dir"
             ./OrcaSlicer_profile_validator -p "$dir" -l 2
+          done
+
+  release_profiles:
+    runs-on: ubuntu-24.04
+    needs: check_profiles
+    if: ${{ github.ref == 'refs/heads/main' }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up GitHub CLI
+        run: |
+          sudo apt update
+          sudo apt install gh -y
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Loop through profile versions and release each
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p output
+          for dir in ./profiles/*/
+          do
+            VERSION=$(basename "$dir")
+            ZIP_NAME="orcaslicer-profiles_ota_${VERSION}.1.zip"
+            echo "Packaging $VERSION"
+            ./scripts/pack_profiles.sh "$VERSION" "1"
+            mv "./orcaslicer-profiles_ota_${VERSION}.1.zip" ./output/
+
+            echo "Creating/updating release for $VERSION"
+            gh release delete "$VERSION" -y || true
+            gh release create "$VERSION" ./output/$ZIP_NAME --title "$VERSION" --notes "Automated release of profiles for $VERSION"
           done
