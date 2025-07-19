@@ -70,11 +70,11 @@ jobs:
           for dir in ./profiles/*/; do
             VERSION=$(basename "$dir")
             NUMBER="$TIMESTAMP"
-            ZIP_NAME="orcaslicer-profiles_ota_${VERSION}.${NUMBER}.zip"
+            ZIP_NAME="gingerslicer-profiles_ota_${VERSION}.${NUMBER}.zip"
             echo "Packaging $VERSION"
 
             ./scripts/pack_profiles.sh "$VERSION" "$NUMBER"
-            mv "./orcaslicer-profiles_ota_${VERSION}.${NUMBER}.zip" ./output/
+            mv "./gingerslicer-profiles_ota_${VERSION}.${NUMBER}.zip" ./output/
 
             echo "Creating/updating release for $VERSION"
             gh release delete "$VERSION" -y || true
