@@ -71,6 +71,10 @@
       "sub_path": "filament/fdm_filament_common.json"
     },
     {
+      "name": "Generic HIPS",
+      "sub_path": "filament/Generic HIPS.json"
+    },
+    {
       "name": "Generic PETG",
       "sub_path": "filament/Generic PETG.json"
     },
@@ -87,12 +91,24 @@
       "sub_path": "filament/Azure PLA.json"
     },
     {
+      "name": "Azure PETG",
+      "sub_path": "filament/Azure PETG.json"
+    },
+    {
       "name": "colorFabb FOAM PLA",
       "sub_path": "filament/colorFabb FOAM PLA.json"
     },
     {
+      "name": "FormFutura PP Centaur",
+      "sub_path": "filament/FormFutura PP Centaur.json"
+    },
+    {
       "name": "FormFutura rPETG 10GF",
       "sub_path": "filament/FormFutura rPETG 10GF.json"
+    },
+    {
+      "name": "FormFutura rPETG 20GF",
+      "sub_path": "filament/FormFutura rPETG 20GF.json"
     },
     {
       "name": "FormFutura rPETG",
@@ -101,6 +117,22 @@
     {
       "name": "Ginger rPLA",
       "sub_path": "filament/Ginger rPLA.json"
+    },
+    {
+      "name": "MAIP ASA 5GF",
+      "sub_path": "filament/MAIP ASA 5GF.json"
+    },
+    {
+      "name": "polymaker PETG 20GF",
+      "sub_path": "filament/polymaker PETG 20GF.json"
+    },
+    {
+      "name": "SmartMaterials PLA olive",
+      "sub_path": "filament/SmartMaterials PLA olive.json"
+    },
+    {
+      "name": "SmartMaterials PLA oyster",
+      "sub_path": "filament/SmartMaterials PLA oyster.json"
     }
   ]
 }
