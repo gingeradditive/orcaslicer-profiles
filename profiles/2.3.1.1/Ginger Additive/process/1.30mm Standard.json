@@ -3,7 +3,7 @@
     "compatible_printers": [
         "Ginger G1 1.2 nozzle"
     ],
-    "from": "User",
+    "from": "system",
     "inherits": "fdm_process_common",
     "initial_layer_line_width": "3.2",
     "initial_layer_print_height": "1",
